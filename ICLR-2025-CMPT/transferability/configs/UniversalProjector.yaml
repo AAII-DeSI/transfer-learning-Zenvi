@@ -1,0 +1,35 @@
+basic:
+  transfer_task: ProjectionTransfer  # ProjectionTransfer, FrozenPromptTransfer
+  wd: 0.1
+  lr: 0.0001
+  norm: False
+  whiten: False
+
+Source:
+  model: roberta
+  tasks: ['imdb', 'sst2', 'laptop', 'restaurant', 'movie', 'tweet', 'mnli', 'qnli', 'snli', 'deontology', 'justice', 'qqp', 'mrpc']
+
+Target:
+  tasks: [caltech101, cifar, dtd, oxford_flowers102, oxford_iiit_pet, sun397, svhn,
+          patch_camelyon, resisc45, eurosat, diabetic_retinopathy,
+          dmlab, kitti, smallnorb_azi, smallnorb_ele, dsprites_loc, dsprites_ori, clevr_dist, clevr_count]
+
+Projector:
+  use_src: True
+  use_tgt: False
+  src_mix: True
+  src_noise: 0
+  dropout: 0.1
+  opt_dim: 768
+
+Loss:
+  function: DistanceAverageEmbedding  # DistanceAverageEmbedding, DistanceInstanceEmbedding
+  metric: Euclidean  # Euclidean, Cosine
+  reduction: mean  # mean, max
+  evaluation_metric: COSINE_AVERAGE  # COSINE_AVERAGE, COSINE_MAX, COSINE_INDIVIDUAL, EUCLIDEAN_AVERAGE, MODEL_ACTIVATION
+
+MMD:
+  involve: True
+  lambda_t: 1
+  lambda_m: 1
+  mmd_processor_type: None

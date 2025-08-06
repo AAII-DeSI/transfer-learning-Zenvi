@@ -1,0 +1,31 @@
+dataset:
+  name: [clevr_dist, clevr_count]
+  batch_size: 64  # !!!
+
+train:
+  epochs: 100
+  base_lr_grid: [0.01, 0.05, 0.1, 0.25, 0.5, 1, 2.5, 5, 10]  # !!!
+  modify_lr: True
+  lr_decay: True
+  weight_decay_grid: [0, 0.0001, 0.001, 0.01]
+  optimizer_type: sgd
+  save_prompt: False
+
+model:
+  trainable_para: ['source prompt', 'opt']
+
+  # Source prompt
+  src_len: 100  # !!!
+  src_task: 'xavier'
+  src_model: roberta  # Useless
+  src_proj: 'none'  # Useless
+
+  # Target prompt (there is no target prompt, all the parameters down here are just to make sure target prompts do not exist)
+  tgt_len: 0
+  tgt_init: xavier
+  tgt_proj: none
+  tgt_involvement: concat
+  cls_pos: after prompt
+
+log:
+  dir_lvl_2: VPT_100

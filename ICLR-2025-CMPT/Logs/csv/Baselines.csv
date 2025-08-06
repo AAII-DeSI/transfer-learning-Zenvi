@@ -1,0 +1,3 @@
+,caltech101,cifar,dtd,oxford_flowers102,oxford_iiit_pet,sun397,svhn,patch_camelyon,resisc45,eurosat,diabetic_retinopathy,dmlab,kitti,smallnorb_azi,smallnorb_ele,dsprites_loc,dsprites_ori,clevr_dist,clevr_count
+Linear,86.25,65.26,64.4,97.27,86.55,51.22,36.25,79.02,69.54,89.34,74.31,33.83,60.1,11.92,20.9,12.67,20.99,31.21,36.29
+Prompt,88.73,78.03,65.73,97.75,87.93,50.21,71.26,80.84,75.7,92.9,73.95,39.81,72.15,17.36,22.83,72.94,30.94,57.59,49.96

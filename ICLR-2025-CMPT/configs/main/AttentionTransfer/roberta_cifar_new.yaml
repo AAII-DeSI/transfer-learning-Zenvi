@@ -1,0 +1,32 @@
+dataset:
+  name: cifar  # !!!
+  batch_size: 64  # !!!
+
+train:
+  epochs: 100
+  base_lr: 0.005  # !!!
+  modify_lr: False  # !!!
+  lr_decay: False  # !!!
+  weight_decay: 0.001  # !!!
+  optimizer_type: adam  # !!!
+  save_prompt: False
+
+model:
+  trainable_para: ['target prompt', 'source projector', 'opt']
+
+  # Source prompt
+  src_len: 100
+  src_tasks: ['qqp']
+  src_model: roberta
+  src_projs: ['new-50']
+
+  # Target prompt
+  tgt_len: 0  # 0 or c_source
+  tgt_init: xavier
+  tgt_proj: none
+  tgt_involvement: concat
+  cls_pos: after prompt
+
+log:
+  dir_lvl_1: AttentionTransfer-New
+  use_tensorboard: False

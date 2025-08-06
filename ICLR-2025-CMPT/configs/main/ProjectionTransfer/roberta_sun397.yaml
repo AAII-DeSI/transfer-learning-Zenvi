@@ -1,0 +1,32 @@
+dataset:
+  name: sun397  # !!!
+  batch_size: 64
+
+train:
+  epochs: 100
+  base_lr: 0.005  # !!!
+  modify_lr: False
+  lr_decay: False
+  weight_decay: 0.001  # !!!
+  optimizer_type: adam
+  save_prompt: False
+
+model:
+  trainable_para: ['source projector', 'opt']
+
+  # Source prompt
+  src_len: 100
+  src_tasks: ['xavier', 'imdb', 'sst2', 'laptop', 'restaurant', 'movie', 'tweet', 'mnli', 'qnli', 'snli', 'deontology', 'justice', 'qqp', 'mrpc']
+  src_model: roberta
+  src_projs: ['type1', ]
+
+  # Target prompt (there is no target prompt, all the parameters down here are just to make sure target prompts do not exist)
+  tgt_len: 0  # 0 or c_source
+  tgt_init: xavier
+  tgt_proj: none
+  tgt_involvement: concat
+  cls_pos: after prompt
+
+log:
+  dir_lvl_1: ProjectionTransfer-New
+  use_tensorboard: False

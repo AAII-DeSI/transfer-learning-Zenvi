@@ -1,0 +1,31 @@
+dataset:
+  name: clevr_count  # !!!
+  batch_size: 64
+
+train:
+  epochs: 100
+  base_lr_grid: [0.05, 0.01, 0.005, 0.001, 0.0005]
+  modify_lr: False
+  lr_decay: True
+  weight_decay_grid: [0, 0.0001, 0.001, 0.01]
+  optimizer_type: adam
+  evaluate_last: False
+
+model:
+  trainable_para: ['target prompt', 'source projector', 'opt']
+
+  # Source prompt
+  src_len: 100
+  src_task: 'snli'
+  src_model: roberta
+  src_proj: 'attention-100'
+
+  # Target prompt
+  tgt_len: 0
+  tgt_init: xavier
+  tgt_proj: none
+  tgt_involvement: concat
+  cls_pos: after prompt
+
+log:
+  dir_lvl_2: AttentionTransfer-New

@@ -1,0 +1,32 @@
+dataset:
+  name: smallnorb_ele  # !!!
+  batch_size: 2048
+
+train:
+  epochs: 100
+  base_lr: 2.5  # !!!
+  modify_lr: True
+  lr_decay: True
+  weight_decay: 0.01  # !!!
+  optimizer_type: sgd
+  save_prompt: False
+
+model:
+  trainable_para: ['opt', ]
+
+  # Source prompt
+  src_len: 100
+  src_tasks: ['xavier', 'imdb', 'sst2', 'laptop', 'restaurant', 'movie', 'tweet', 'mnli', 'qnli', 'snli', 'deontology', 'justice', 'qqp', 'mrpc']
+  src_model: roberta
+  src_projs: ['none', ]
+
+  # Target prompt (there is no target prompt, all the parameters down here are just to make sure target prompts do not exist)
+  tgt_len: 0  # 0 or c_source
+  tgt_init: xavier
+  tgt_proj: none
+  tgt_involvement: concat
+  cls_pos: after prompt
+
+log:
+  dir_lvl_1: FrozenPromptTransfer-New
+  use_tensorboard: False

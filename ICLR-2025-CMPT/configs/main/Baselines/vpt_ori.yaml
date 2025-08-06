@@ -1,0 +1,43 @@
+dataset:
+  name: [caltech101, dtd, oxford_flowers102, oxford_iiit_pet, sun397, svhn,
+         patch_camelyon, resisc45, eurosat, diabetic_retinopathy,
+         dmlab, kitti, smallnorb_azi, smallnorb_ele, dsprites_loc, dsprites_ori, clevr_dist, clevr_count]
+  batch_size: [128, 128, 64, 128, 128, 64,
+               128, 128, 128, 128,
+               64, 64, 64, 64, 64, 64, 64, 64]
+  resize_size: [256, 256]
+  crop_size: [224, 224]
+  normalize: imagenet
+
+train:
+  epochs: 100
+  base_lr: [2.5, 10, 25, 2.5, 1, 0.5,
+            1, 10, 100, 0.1,
+            500, 250, 1, 500, 1, 0.5, 2.5, 500]
+  modify_lr: True
+  lr_decay: True
+  weight_decay: [0.001, 0, 0.001, 0.001, 0, 0.01,
+                 0.01, 0.001, 0.001, 0.01,
+                 0, 0, 0.01, 0, 0.01, 0.01, 0.01, 0]
+  optimizer_type: sgd
+  save_prompt: VPT_ori
+
+model:
+  name: vit
+  trainable_para: ['source prompt', 'opt']
+  load_opt: False
+
+  # Source prompt
+  src_len: [5, 1, 200, 50, 1, 200,
+            5, 50, 50, 10,
+            100, 100, 200, 200, 100, 100, 200, 100]
+  src_task: 'xavier'
+  src_model: roberta  # Useless
+  projection: 'none'  # Useless
+  inner_dim: 768  # Useless
+
+  # Target prompt (there is no target prompt, all the parameters down here are just to make sure target prompts do not exist)
+  tgt_len: 0
+  tgt_init: xavier
+  tgt_involvement: concat
+  cls_pos: after prompt

@@ -1,0 +1,36 @@
+dataset:
+  name: dtd  # !!!
+  batch_size: 64
+  resize_size: [256, 256]
+  crop_size: [224, 224]
+  normalize: imagenet
+
+train:
+  epochs: 100
+  base_lr_grid: [0.01, 0.05, 0.1, 0.25, 0.5, 1, 2.5, 5, 10, 25]
+  modify_lr: True
+  lr_decay: True
+  weight_decay_grid: [0, 0.0001, 0.001, 0.01]
+  optimizer_type: sgd
+  save_prompt: False
+
+model:
+  name: vit
+  trainable_para: ['target prompt', 'projector', 'opt']
+  load_opt: False
+
+  # Source prompt
+  src_len: 100
+  src_task: 'imdb'
+  src_model: roberta
+  projection: 'attention-50'
+  inner_dim: 768  # Useless
+
+  # Target prompt
+  tgt_len: 50
+  tgt_init: xavier
+  tgt_involvement: concat
+  cls_pos: after prompt
+
+log:
+  dir_lvl_2: AttentionTransfer

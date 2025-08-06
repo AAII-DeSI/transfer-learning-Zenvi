@@ -1,0 +1,36 @@
+dataset:
+  name: oxford_flowers102  # !!!
+  batch_size: 64  # !!!
+  resize_size: [256, 256]
+  crop_size: [224, 224]
+  normalize: imagenet
+
+train:
+  epochs: 100
+  base_lr_grid: [0.01, 0.05, 0.1, 0.25, 0.5, 1, 2.5, 5, 10, 25, 50]  # !!!
+  modify_lr: True
+  lr_decay: True
+  weight_decay_grid: [0, 0.0001, 0.001, 0.01]
+  optimizer_type: sgd
+  save_prompt: False
+
+model:
+  name: vit
+  trainable_para: ['source prompt', 'opt']
+  load_opt: False
+
+  # Source prompt
+  src_len: 200  # !!!
+  src_task: 'xavier'
+  src_model: roberta  # Useless
+  projection: 'none'  # Useless
+  inner_dim: 768  # Useless
+
+  # Target prompt (there is no target prompt, all the parameters down here are just to make sure target prompts do not exist)
+  tgt_len: 0
+  tgt_init: xavier
+  tgt_involvement: concat
+  cls_pos: after prompt
+
+log:
+  dir_lvl_2: VPT_ori

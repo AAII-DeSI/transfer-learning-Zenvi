@@ -1,0 +1,29 @@
+basic:
+  transfer_task: ProjectionTransfer  # ProjectionTransfer, FrozenPromptTransfer
+  wd_grid: [0, 0.1, 0.01, 0.001, 0.0001]
+  lr_grid: [0.001, 0.0005, 0.0001, 0.00005, 0.00001]
+  norm: False
+  whiten: False
+
+Source:
+  model: roberta
+  tasks: ['imdb', 'sst2', 'laptop', 'restaurant', 'movie', 'tweet', 'mnli', 'qnli', 'snli', 'deontology', 'justice', 'qqp', 'mrpc']
+
+Target:
+  task: cifar
+
+Projector:
+  use_src: True
+  use_tgt: False
+  src_mix: True
+  src_noise: 0
+#  tgt_mix: True
+#  tgt_noise: 0
+  dropout: 0.1
+  opt_dim: 768
+
+Loss:
+  function: DistanceAverageEmbedding  # DistanceAverageEmbedding, DistanceInstanceEmbedding
+  metric: Euclidean  # Euclidean, Cosine
+  reduction: mean  # mean, max
+  evaluation_metric: COSINE_AVERAGE  # COSINE_AVERAGE, COSINE_MAX, COSINE_INDIVIDUAL, EUCLIDEAN_AVERAGE, MODEL_ACTIVATION
